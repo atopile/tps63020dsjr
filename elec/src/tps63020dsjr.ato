@@ -43,7 +43,7 @@ module TPS63020DSJR from AdjustableRegulator:
     # feedback divider
     feedback_div.in ~ power_out
     feedback_div.out ~ ic.FB
-    feedback_div.r_top.value = 1Mohm +/- 5%
+    feedback_div.r_top.value = 1.1Mohm +/- 5%
     feedback_div.r_top.package = "0402"
     feedback_div.r_bottom.value = 180kohm +/- 5%
     feedback_div.r_bottom.package = "0402"
