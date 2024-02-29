@@ -30,6 +30,11 @@ module TPS63020DSJR from AdjustableRegulator:
     ic = new _TPS63020DSJR
     inductor = new Inductor
 
+    v_ref = 500mV
+    v_out = 3V to 4V
+
+    assert v_in within 1.8V to 5.5V
+    assert v_out within 1.2V to 5.5V
     # Connect power interfaces
     # power in
     ic.VIN ~ power_in.vcc
@@ -43,9 +48,9 @@ module TPS63020DSJR from AdjustableRegulator:
     # feedback divider
     feedback_div.in ~ power_out
     feedback_div.out ~ ic.FB
-    feedback_div.r_top.value = 1.1Mohm +/- 5%
+    # feedback_div.r_top.value = 1Mohm +/- 5%
     feedback_div.r_top.package = "0402"
-    feedback_div.r_bottom.value = 180kohm +/- 5%
+    # feedback_div.r_bottom.value = 180kohm +/- 5%
     feedback_div.r_bottom.package = "0402"
 
     # Power good pullup resistor
