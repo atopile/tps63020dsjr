@@ -28,7 +28,6 @@ component _TPS63020DSJR:
 
 module TPS63020DSJR from AdjustableRegulator:
     ic = new _TPS63020DSJR
-    inductor = new Inductor
 
     v_ref = 500mV
     v_out = 3V to 4V
@@ -92,7 +91,6 @@ module TPS63020DSJR from AdjustableRegulator:
     # Inductor
     inductor = new Inductor
     inductor.inductance = 1.5uH +/- 20%
-    inductor.current = 1A to 4A
     inductor.1 ~ ic.L1
     inductor.2 ~ ic.L2
 
@@ -104,6 +102,11 @@ component _WPN252012H1R5MT from Inductor:
     footprint = "IND-SMD_L2.5-W2.0_WPN252012H"
     lcsc_id = "C98349"
     mpn = "C98349"
+    inductance = 1.5uH +/- 20%
+    rated_current = 0A to 2.4A
+    dcr = 72mohm +/- 20%
+    saturation_current = 3.5A
+
 
 
 
