@@ -41,7 +41,7 @@ module TPS63020DSJR from AdjustableRegulator:
 
     # feedback divider
     feedback_div.power ~ power_out
-    feedback_div.output ~ ic.FB
+    feedback_div.output.line ~ ic.FB
     feedback_div.r_top.package = "R0402"
     feedback_div.r_bottom.package = "R0402"
 
@@ -83,30 +83,16 @@ module TPS63020DSJR from AdjustableRegulator:
 
     # Inductor
     inductor = new Inductor
-    inductor.inductance = 1.5uH +/- 20%
     inductor.p1 ~ ic.L1
     inductor.p2 ~ ic.L2
-
-    inductor -> _WPN252012H1R5MT
-
+    inductor.lcsc_id = "C98349"
+    assert inductor.inductance is 1.5uH +/- 20%
+    assert inductor.max_current is 2.4A
+    assert inductor.dc_resistance is 72mohm +/- 20%
+    # assert inductor.saturation_current is 3.5A
 
 module App:
     regulator = new TPS63020DSJR
     regulator.v_in = 3.3V
     regulator.v_out = 1.8V +/- 1%
-
-
-component _WPN252012H1R5MT from Inductor:
-    # component WPN252012H1R5MT
-    footprint = "IND-SMD_L2.5-W2.0_WPN252012H"
-    lcsc_id = "C98349"
-    inductance = 1.5uH +/- 20%
-    rated_current = 0A to 2.4A
-    dcr = 72mohm +/- 20%
-    saturation_current = 3.5A
-
-
-
-
-
 
